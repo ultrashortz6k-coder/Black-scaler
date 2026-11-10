@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf8ff">
+  <meta name="description" content="Ultra Upscale is a free, browser-based video enhancer.">
+  <title>Ultra Upscale — Free Video Enhancer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Ultra Upscale home">
+        <span class="brand-icon">▶</span><span class="brand-name">ULTRA<br><b>UPSCALE</b></span>
+      </a>
+      <nav class="nav">
+        <a class="nav-item active" href="#home"><span>⌂</span> Home</a>
+        <a class="nav-item" href="#settings"><span>⚙</span> Settings</a>
+        <a class="nav-item" href="#about"><span>ⓘ</span> About</a>
+        <a class="nav-item" href="https://github.com/" target="_blank" rel="noreferrer"><span>◈</span> GitHub</a>
+      </nav>
+      <div class="free-card"><span class="crown">♛</span><div><b>100% Free</b><small>No subscription required</small></div></div>
+      <div class="sidebar-art"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="art-mark">U</div><p>MAKE EVERY<br>FRAME COUNT.</p></div>
+      <div class="side-foot">BUILT FOR CREATORS · 2026</div>
+    </aside>
+
+    <main class="main" id="home">
+      <header class="mobile-header">
+        <a class="brand" href="#"><span class="brand-icon">▶</span><span class="brand-name">ULTRA<br><b>UPSCALE</b></span></a>
+        <span class="free-pill">✦ FREE FOREVER</span>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><i></i> ENHANCE&nbsp; · &nbsp;UPSCALE&nbsp; · &nbsp;SHARPEN</div>
+          <h1>Ultra <em>Upscale</em></h1>
+          <h2>Your videos. A clearer view.</h2>
+          <p>A simple, free video enhancer that works right in your browser.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="halo"></div><div class="spark s1">✦</div><div class="spark s2">✧</div>
+          <div class="crystal"><span>U</span></div><div class="art-caption">DETAIL<br>REIMAGINED</div>
+        </div>
+      </section>
+
+      <section class="upload-card">
+        <div class="card-heading"><div><span class="step">01</span><div><h3>Choose your video</h3><p>Start with a clip you want to improve</p></div></div><span class="format-pill">MP4 · MOV · WEBM</span></div>
+        <label class="dropzone" id="dropzone" for="videoInput">
+          <input id="videoInput" type="file" accept="video/*">
+          <span class="cloud-icon">↑</span><strong>Drag &amp; drop your video here</strong><span class="or">or</span>
+          <span class="choose-btn">▣ &nbsp; Choose Video</span><small>Video stays on your device · Try a short clip first</small>
+        </label>
+        <div class="file-info" id="fileInfo" hidden></div>
+      </section>
+
+      <section class="work-grid">
+        <div class="preview-card">
+          <div class="card-heading compact"><div><span class="step">02</span><div><h3>Video preview</h3><p>Check your selected clip</p></div></div><span class="live-pill">PREVIEW</span></div>
+          <div class="preview-stage" id="previewStage">
+            <div class="preview-placeholder"><div class="play-symbol">▶</div><b>Your video appears here</b><small>Choose a video to preview it</small></div>
+            <video id="preview" controls playsinline hidden></video>
+          </div>
+        </div>
+
+        <div class="settings-card" id="settings">
+          <div class="card-heading compact"><div><span class="step">03</span><div><h3>Enhancement settings</h3><p>Fine-tune your output</p></div></div><span class="magic">✧</span></div>
+          <label class="field-label" for="scale">Output resolution</label>
+          <select id="scale" class="select">
+            <option value="original">Original resolution</option>
+            <option value="2x">2× upscale</option>
+            <option value="1080">Fit within 1080p</option>
+          </select>
+          <div class="toggle-row"><div><b>Extra sharpening</b><small>Make edges look crisper</small></div><label class="switch"><input id="sharpen" type="checkbox"><span></span></label></div>
+          <div class="toggle-row"><div><b>Noise reduction</b><small>Reduce grain and visual noise</small></div><label class="switch"><input id="denoise" type="checkbox" checked><span></span></label></div>
+          <div class="toggle-row"><div><b>Contrast boost</b><small>Add a subtle clarity lift</small></div><label class="switch"><input id="contrast" type="checkbox" checked><span></span></label></div>
+          <button id="enhanceBtn" class="primary-btn" disabled><span>✦</span> Enhance my video</button>
+          <p class="privacy-note">♧ &nbsp; Processing happens locally in your browser.</p>
+          <div id="status" class="status" aria-live="polite"></div>
+          <div class="progress-wrap" id="progressWrap" hidden><div class="progress"><span id="progressBar"></span></div><small id="progressText">Preparing…</small></div>
+          <a id="downloadBtn" class="download-btn" hidden download="ultra-upscale-enhanced.mp4">↓ &nbsp; Download enhanced video</a>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="feature"><span>ϟ</span><div><b>Fast setup</b><small>No account needed</small></div></div>
+        <div class="feature"><span>◇</span><div><b>Upscale</b><small>2× resolution option</small></div></div>
+        <div class="feature"><span>◈</span><div><b>Cleaner look</b><small>Sharpen &amp; denoise</small></div></div>
+        <div class="feature"><span>▣</span><div><b>Mobile ready</b><small>Designed for phones</small></div></div>
+      </section>
+
+      <section class="about" id="about"><b>A quick note about quality</b><p>Ultra Upscale currently uses FFmpeg filters and Lanczos scaling, not trained AI restoration models. It can improve perceived sharpness and smooth noise, but it cannot recreate details missing from the original video. Large files may be slow on mobile devices.</p></section>
+      <footer>ULTRA UPSCALE <span>✦</span> FREE VIDEO ENHANCEMENT FOR EVERYONE</footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    const picker=document.getElementById('videoInput');
+    const video=document.getElementById('preview');
+    const placeholder=document.querySelector('.preview-placeholder');
+    picker.addEventListener('change',()=>{if(picker.files[0]){placeholder.hidden=true;video.hidden=false;}});
+  </script>
+</body>
+</html>
